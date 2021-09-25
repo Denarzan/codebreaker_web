@@ -8,6 +8,7 @@
       <sourceFolder url="file://$MODULE_DIR$/features" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/spec" isTestSource="true" />
       <sourceFolder url="file://$MODULE_DIR$/test" isTestSource="true" />
+      <excludeFolder url="file://$MODULE_DIR$/vendor/ruby/2.7.0/cache" />
     </content>
     <orderEntry type="jdk" jdkName="RVM: ruby-2.7.2" jdkType="RUBY_SDK" />
     <orderEntry type="sourceFolder" forTests="false" />
@@ -528,6 +529,31 @@
         </SOURCES>
         <excluded>
           <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/sexp_processor-4.15.3/test" />
+        </excluded>
+      </library>
+    </orderEntry>
+    <orderEntry type="module-library">
+      <library name="shotgun (vbundled(0.9.2)) [path][gem]" type="rubylib">
+        <properties>
+          <option name="version" value="4" />
+        </properties>
+        <CLASSES>
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/man" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/test" />
+        </CLASSES>
+        <JAVADOC />
+        <SOURCES>
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/lib" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/man" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/test" />
+        </SOURCES>
+        <excluded>
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/bin" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/man" />
+          <root url="file://$MODULE_DIR$/vendor/ruby/2.7.0/gems/shotgun-0.9.2/test" />
         </excluded>
       </library>
     </orderEntry>

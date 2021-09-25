@@ -3,13 +3,14 @@ class Raker
     @request = request
   end
 
-  def redirect(name)
-    Rack::Response.new { |res| res.redirect(name) }
+  def redirect(template)
+    Rack::Response.new { |res| res.redirect(template) }
   end
 
   def render_template(template)
     path = File.expand_path("../../../public/#{template}", __FILE__)
-    Haml::Engine.new(File.read(path)).render(binding)
+    haml = Haml::Engine.new(File.read(path)).render(binding)
+    Rack::Response.new(haml)
   end
 
   def response

@@ -27,9 +27,6 @@ class Game
     @user = configure_user
     @used_hints = @request.session[:used_hints] || []
     setup_session
-    puts 'nananananananana'
-    puts @user.inspect
-    puts @codebreaker.inspect
   end
 
   def configure_game
@@ -45,6 +42,7 @@ class Game
   end
 
   def configure_user_guess
+    puts @codebreaker.code
     @request.session[:user].attempts_used += 1
     user_code = @request.params['number'].chars.map(&:to_i)
     guess_output = @request.session[:codebreaker].compare_codes(user_code)

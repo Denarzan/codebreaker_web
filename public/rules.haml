@@ -8,7 +8,8 @@
     %link{href: "assets/css/styles.css", rel: "stylesheet"}/
     %script{src: "assets/js/jquery.min.js"}
     %script{src: "assets/js/bootstrap.min.js"}
-    %title Codebreaker Web
+    %title
+      = I18n.t('name')
   %body
 
 %section#introduction
@@ -18,29 +19,12 @@
         .row
           .col-md-auto
             %h1.text-white.title
-              Codebreaker 2021
+              = I18n.t('title')
         %hr.mb-4/
         .row
           %p.lead.text-white-70
-            The codebreaker gets some number of chances to break the code (depends on chosen difficulty).\n
-            In each turn, the codebreaker makes a guess of 4 numbers.\n
-            The codemaker then marks the guess with up to 4 signs - + or - or empty spaces.\n
-            A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers\n
-            in the secret code and in the same position. For example:\n
-            Secret number - 1234\n
-            Input number - 6264\n
-            Number of pluses - 2 (second and fourth position)\n
-            A - indicates a number match: one of the numbers in the guess is the same as one of the numbers\n
-            in the secret code but in a different position. For example:\n
-            Secret number - 1234\n
-            Input number - 6462\n
-            Number of minuses - 2 (second and fourth position)\n
-            An empty space indicates that there is not a current digit in a secret number.\n
-            If codebreaker inputs the exact number as a secret number - codebreaker wins the game.\n
-            If all attempts are spent - codebreaker loses.\n
-            Codebreaker also has some number of hints(depends on chosen difficulty).\n
-            If a user takes a hint - he receives back a separate digit of the secret code.
+            = I18n.t('rules')
         %hr.mb-4/
         .row.mb-4
           %a.btn.btn-primary.btn-lg{:href => "/", :role => "button"}
-            Home
+            = I18n.t('button.home')

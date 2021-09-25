@@ -10,6 +10,7 @@ class GameRacker < Raker
     '/lose' => :lose,
     '/start' => :start
   }.freeze
+  WIN = %w[+ + + +].freeze
 
   def initialize(request)
     super
@@ -47,25 +48,23 @@ class GameRacker < Raker
 
     matches = @game.configure_user_guess
     check_end_game(matches)
-
-    redirect('game')
   end
 
   def lose
     return redirect('/') unless @game.game?
 
-    Rack::Response.new(render_template('lose.haml'))
+    response = render_template('lose.haml')
     @request.session.clear
-    Rack::Response.new(render_template('lose.haml'))
+    response
   end
 
   def win
     return redirect('/') unless @game.game?
 
     save_game(@request.session[:codebreaker], @request.session[:user])
-    Rack::Response.new(render_template('win.haml'))
+    response = render_template('win.haml')
     @request.session.clear
-    Rack::Response.new(render_template('win.haml'))
+    response
   end
 
   def hint
@@ -76,8 +75,9 @@ class GameRacker < Raker
   end
 
   def check_end_game(matches)
-    return win if matches == %w[+ + + +]
+    return redirect('win') if matches == WIN
+    return redirect('lose') if @request.session[:user].attempts_used == @request.session[:user].attempts_total
 
-    lose if @request.session[:user].attempts_used == @request.session[:user].attempts_total
+    redirect('game')
   end
 end

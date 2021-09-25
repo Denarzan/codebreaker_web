@@ -1,0 +1,57 @@
+en:
+  name: Codebreaker Web
+  title: Codebreaker 2021
+  greeting: |
+    Hello, test!
+    Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
+  level: Level
+  attempts: Attempts
+  hints: Hints
+  statistic: Statistics
+  menu:
+    short_rules: Try to guess 4-digit number, that consists of numbers in a range from 1 to 6.
+    player_name: Player's name
+    level: Game level
+    chose_level: Choose game level...
+    game_level:
+      easy: Easy
+      medium: Medium
+      hell: Hell
+  lose:
+    answer: The code was
+    play_again: Play again!
+  button:
+    submit: Submit
+    hint: Show hint!
+    start: Start the game!
+    rules: Rules
+    statistics: Statistics
+    home: Home
+    play_again: Play again!
+  stats:
+    empty: No winners
+    present: Top of Players
+    field:
+      name: Name
+      level: Level
+      attempts: Attempts Left
+      hints: Hints Left
+  rules: |
+    The codebreaker gets some number of chances to break the code (depends on chosen difficulty).
+    In each turn, the codebreaker makes a guess of 4 numbers.
+    The codemaker then marks the guess with up to 4 signs - + or - or empty spaces.
+    A + indicates an exact match: one of the numbers in the guess is the same as one of the numbers
+    in the secret code and in the same position. For example:
+    Secret number - 1234
+    Input number - 6264
+    Number of pluses - 2 (second and fourth position)
+    A - indicates a number match: one of the numbers in the guess is the same as one of the numbers
+    in the secret code but in a different position. For example:
+    Secret number - 1234
+    Input number - 6462
+    Number of minuses - 2 (second and fourth position)
+    An empty space indicates that there is not a current digit in a secret number.
+    If codebreaker inputs the exact number as a secret number - codebreaker wins the game.
+    If all attempts are spent - codebreaker loses.
+    Codebreaker also has some number of hints(depends on chosen difficulty).
+    If a user takes a hint - he receives back a separate digit of the secret code.

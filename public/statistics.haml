@@ -8,7 +8,8 @@
     %link{href: "assets/css/styles.css", rel: "stylesheet"}/
     %script{src: "assets/js/jquery.min.js"}
     %script{src: "assets/js/bootstrap.min.js"}
-    %title Codebreaker Web
+    %title
+      = I18n.t('name')
   %body
     %section#introduction
       .container
@@ -16,21 +17,28 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title Codebreaker 2018
+                %h1.text-white.title
+                  = I18n.t('title')
                 - if load_stat_to_file.empty?
-                  %p.lead.text-white-70 No winners
+                  %p.lead.text-white-70
+                    = I18n.t('stats.empty')
                 - else
-                  %p.lead.text-white-70 Top of Players:
+                  %p.lead.text-white-70
+                    = I18n.t('stats.present') + ':'
                   %hr.mb-4/
                   .table-responsive-md.scores
                     %table.table.table-striped.table.table-sm
                       %thead
                         %tr
                           %th{scope: "col"} #
-                          %th{scope: "col"} Name
-                          %th{scope: "col"} Level
-                          %th{scope: "col"} Attempts Left
-                          %th{scope: "col"} Hints Left
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.name')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.level')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.attempts')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.hints')
                       %tbody
                         - NewSuperCodebreaker2021::Game.new.show_stats('rating.yml').each_with_index do |user, index|
                           %tr
@@ -50,4 +58,4 @@
                               = user.hints_total
                 %hr.mb-4/
                 %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
-                  Home
+                  = I18n.t('button.home')

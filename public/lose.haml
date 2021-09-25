@@ -8,7 +8,8 @@
     %link{href: "assets/css/styles.css", rel: "stylesheet"}/
     %script{src: "assets/js/jquery.min.js"}
     %script{src: "assets/js/bootstrap.min.js"}
-    %title Codebreaker Web
+    %title
+      = I18n.t('name')
   %body
     %section#introduction
       .container
@@ -16,21 +17,22 @@
           .col-12.col-md-6
             .row
               .col-md-auto
-                %h1.text-white.title.inline-block Codebreaker 2021
+                %h1.text-white.title.inline-block
+                  = I18n.t('title')
             .row
               .col.button
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Level:
+                  = I18n.t('level') + ':'
                   %span.badge.badge-light
                     = Game::DIFFICULTY.keys[@game.user.difficulty]
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Attempts Left:
+                  = I18n.t('attempts') + ":"
                   %span.badge.badge-light
                     = @game.user.attempts_used
                     = '/'
                     = @game.user.attempts_total
                 %button.btn.btn-primary{disabled: "disabled", type: "button"}
-                  Hints Left:
+                  = I18n.t('hints') + ":"
                   %span.badge.badge-light
                     = @game.user.hints_used
                     = '/'
@@ -42,12 +44,12 @@
                   %h3.text-white
                     = "Oops, #{@game.user.name}! You lose the game!"
                   %h4.text-white
-                    The code was
+                    = I18n.t('lose.answer')
                     %strong
                       = @game.codebreaker.code
                 %img.img-fluid{alt: "You lose the game!", src: "assets/images/lost.gif"}/
             %hr.mb-4/
             %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
-              Play again!
+              = I18n.t('lose.play_again')
             %a.btn.btn-success.btn-lg.float-right{href: "/statistics", role: "button"}
-              Statistics
+              = I18n.t('statistic')
