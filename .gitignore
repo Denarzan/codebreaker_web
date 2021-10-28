@@ -1,2 +1,5 @@
 .history
 .DS_Store
+.idea
+rating.yml
+vendor

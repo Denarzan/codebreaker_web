@@ -1,0 +1,61 @@
+!!!
+%html.mdl-js{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %link{href: "assets/favicon.ico", rel: "icon"}/
+    %link{href: "assets/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "assets/css/styles.css", rel: "stylesheet"}/
+    %script{src: "assets/js/jquery.min.js"}
+    %script{src: "assets/js/bootstrap.min.js"}
+    %title
+      = I18n.t('name')
+  %body
+    %section#introduction
+      .container
+        .row.fill-viewport.align-items-center.justify-content-center
+          .col-12.col-md-6
+            .row
+              .col-md-auto
+                %h1.text-white.title
+                  = I18n.t('title')
+                - if load_stat_to_file.empty?
+                  %p.lead.text-white-70
+                    = I18n.t('stats.empty')
+                - else
+                  %p.lead.text-white-70
+                    = I18n.t('stats.present') + ':'
+                  %hr.mb-4/
+                  .table-responsive-md.scores
+                    %table.table.table-striped.table.table-sm
+                      %thead
+                        %tr
+                          %th{scope: "col"} #
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.name')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.level')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.attempts')
+                          %th{scope: "col"}
+                            = I18n.t('stats.field.hints')
+                      %tbody
+                        - NewSuperCodebreaker2021::Game.new.show_stats('rating.yml').each_with_index do |user, index|
+                          %tr
+                            %th{scope: "row"}
+                              = index + 1
+                            %td
+                              = user.name
+                            %td
+                              = StatRacker::DIFFICULTY.keys[user.difficulty]
+                            %td
+                              = user.attempts_used
+                              = '/'
+                              = user.attempts_total
+                            %td
+                              = user.hints_used
+                              = '/'
+                              = user.hints_total
+                %hr.mb-4/
+                %a.btn.btn-primary.btn-lg{href: "/", role: "button"}
+                  = I18n.t('button.home')

@@ -1,0 +1,67 @@
+!!!
+%html.mdl-js{lang: "en"}
+  %head
+    %meta{content: "text/html; charset=UTF-8", "http-equiv" => "Content-Type"}/
+    %meta{content: "width=device-width, initial-scale=1, shrink-to-fit=no", name: "viewport"}/
+    %link{href: "assets/favicon.ico", rel: "icon"}/
+    %link{href: "assets/css/bootstrap.min.css", rel: "stylesheet"}/
+    %link{href: "assets/css/styles.css", rel: "stylesheet"}/
+    %script{src: "assets/js/jquery.min.js"}
+    %script{src: "assets/js/bootstrap.min.js"}
+    %title
+      = I18n.t('name')
+  %body
+    %section#introduction
+      .container
+        .row.fill-viewport.align-items-center.justify-content-center
+          .col-12.col-md-6
+            .row
+              .col-md-auto
+                %h1.text-white.title
+                  = I18n.t('title')
+            %p.lead.text-white-70
+              = I18n.t('greeting', name: @game.user.name)
+            %hr.mb-4/
+            .row
+              .col.button
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  = I18n.t('level') + ':'
+                  %span.badge.badge-light
+                    = Game::DIFFICULTY.keys[@request.session[:user].difficulty]
+              .col.text-center.button
+                %button.btn.btn-primary{disabled: "disabled", type: "button"}
+                  = I18n.t('attempts') + ":"
+                  %span.badge.badge-light
+                    = @request.session[:user].attempts_used
+                    = '/'
+                    = @request.session[:user].attempts_total
+              .col.button
+                %button.btn.btn-primary.float-right{type: "button"}
+                  = I18n.t('hints') + ":"
+                  %span.badge.badge-light
+                    = @request.session[:user].hints_used
+                    = '/'
+                    = @request.session[:user].hints_total
+            %hr.mb-4/
+            %form{action: "/submit_answer", method: "post"}
+              .form-group
+                %input.form-control.guess_input{autocomplete: "off", name: "number", pattern: "^[1-6]{4}$", placeholder: "1234", required: ""}/
+              .form-group.guess_markers_list
+                #guess_marker
+                  - if @request.session[:guess_output]
+                    - @request.session[:guess_output].each do |element|
+                      - case element
+                      - when '+'
+                        %button.btn.btn-success.marks{disabled: "disabled", type: "button"} +
+                      - when '-'
+                        %button.btn.btn-primary.marks{disabled: "disabled", type: "button"} -
+                      -else
+                        %button.btn.btn-danger.marks{disabled: "disabled", type: "button"} x
+              %hr.mb-4/
+              %button.btn.btn-primary.btn-lg{type: "submit"}
+                = I18n.t('button.submit')
+              %a.btn.btn-warning.btn-lg.float-right{href: '/hint', role: "button"}
+                = I18n.t('button.hint')
+                - @game.hints.each do |hint|
+                  %span.badge.badge-light
+                    = hint
